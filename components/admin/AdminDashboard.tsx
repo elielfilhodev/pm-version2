@@ -4,14 +4,15 @@ import { useEffect, useState } from 'react'
 import ProductList from './ProductList'
 import ProductForm from './ProductForm'
 import CategoryManager from './CategoryManager'
-import { LogOut, Package, Plus, Tag } from 'lucide-react'
+import SiteSettingsManager from './SiteSettings'
+import { LogOut, Package, Plus, Tag, Settings } from 'lucide-react'
 
 interface AdminDashboardProps {
   onLogout: () => void
 }
 
 export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
-  const [activeTab, setActiveTab] = useState<'products' | 'add' | 'categories'>('products')
+  const [activeTab, setActiveTab] = useState<'products' | 'add' | 'categories' | 'settings'>('products')
   const [editingProduct, setEditingProduct] = useState<any>(null)
 
   const handleLogout = () => {
@@ -91,6 +92,17 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
             <Tag className="w-5 h-5" />
             Categorias
           </button>
+          <button
+            onClick={() => setActiveTab('settings')}
+            className={`flex items-center gap-2 px-4 py-2 font-medium transition-colors ${
+              activeTab === 'settings'
+                ? 'text-primary-600 border-b-2 border-primary-600'
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
+          >
+            <Settings className="w-5 h-5" />
+            Configurações
+          </button>
         </div>
 
         {/* Content */}
@@ -106,6 +118,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
           />
         )}
         {activeTab === 'categories' && <CategoryManager />}
+        {activeTab === 'settings' && <SiteSettingsManager />}
       </div>
     </div>
   )

@@ -61,6 +61,28 @@ async function main() {
   }
 
   console.log('✅ Categorias criadas')
+
+  // Criar configurações padrão do site
+  const existingSettings = await prisma.siteSettings.findFirst()
+  if (!existingSettings) {
+    await prisma.siteSettings.create({
+      data: {
+        siteName: "Proenca's Moda",
+        heroTitle: "Bem-vinda à Proenca's Moda",
+        heroSubtitle:
+          'Descubra nossa coleção exclusiva de roupas femininas. Plus size e vestidos elegantes para todos os momentos.',
+        novidadesTitle: '🆕 Novidades',
+        colecaoTitle: 'Nossa Coleção',
+        footerText: 'Moda feminina com estilo e elegância',
+        primaryColor: '#db2777',
+        secondaryColor: '#ec4899',
+        backgroundColor: '#fdf2f8',
+      },
+    })
+    console.log('✅ Configurações do site criadas')
+  } else {
+    console.log('ℹ️  Configurações do site já existem')
+  }
 }
 
 main()

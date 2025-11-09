@@ -45,3 +45,20 @@ model Product {
     @@index([isNew])
     @@index([inStock])
 }
+
+model SiteSettings {
+    id              String   @id @default(cuid())
+    siteName        String   @default("Proenca's Moda")
+    heroTitle       String   @default("Bem-vinda à Proenca's Moda")
+    heroSubtitle    String   @default("Descubra nossa coleção exclusiva de roupas femininas. Plus size e vestidos elegantes para todos os momentos.")
+    novidadesTitle  String   @default("🆕 Novidades")
+    colecaoTitle    String   @default("Nossa Coleção")
+    footerText      String   @default("Moda feminina com estilo e elegância")
+    primaryColor    String   @default("#db2777") // Cor primária em hex
+    secondaryColor  String   @default("#ec4899") // Cor secundária em hex
+    backgroundColor String   @default("#fdf2f8") // Cor de fundo em hex
+    createdAt       DateTime @default(now())
+    updatedAt       DateTime @updatedAt
+
+    @@unique([id])
+}
