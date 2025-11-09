@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 import ProductCard from '@/components/ProductCard'
 import SiteConfig from '@/components/SiteConfig'
+import NavLink from '@/components/NavLink'
 import { formatPrice } from '@/lib/utils'
 
 export const revalidate = 60 // Revalidar a cada 60 segundos
@@ -85,45 +86,15 @@ export default async function Home() {
                 {settings.siteName}
               </Link>
             <nav className="flex gap-6">
-              <Link
-                href="/"
-                className="text-gray-700 transition-colors font-medium"
-                style={{
-                  '--hover-color': settings.primaryColor,
-                } as React.CSSProperties & { '--hover-color': string }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = settings.primaryColor
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#374151'
-                }}
-              >
+              <NavLink href="/" primaryColor={settings.primaryColor}>
                 Início
-              </Link>
-              <Link
-                href="/#produtos"
-                className="text-gray-700 transition-colors font-medium"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = settings.primaryColor
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#374151'
-                }}
-              >
+              </NavLink>
+              <NavLink href="/#produtos" primaryColor={settings.primaryColor}>
                 Produtos
-              </Link>
-              <Link
-                href="/admin"
-                className="text-gray-700 transition-colors font-medium"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = settings.primaryColor
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#374151'
-                }}
-              >
+              </NavLink>
+              <NavLink href="/admin" primaryColor={settings.primaryColor}>
                 Admin
-              </Link>
+              </NavLink>
             </nav>
           </div>
         </div>

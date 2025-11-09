@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { verifyAdmin } from '@/lib/auth'
 import { sign } from 'jsonwebtoken'
 
+export const dynamic = 'force-dynamic'
+
 const JWT_SECRET = process.env.NEXTAUTH_SECRET || 'your-secret-key'
 
 export async function POST(request: NextRequest) {

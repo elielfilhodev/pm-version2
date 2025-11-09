@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { verify } from 'jsonwebtoken'
 
+export const dynamic = 'force-dynamic'
+
 const JWT_SECRET = process.env.NEXTAUTH_SECRET || 'your-secret-key'
 
 export async function GET(request: NextRequest) {
