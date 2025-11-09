@@ -23,7 +23,14 @@ async function main() {
     })
     console.log('✅ Admin criado:', adminUsername)
   } else {
-    console.log('ℹ️  Admin já existe:', adminUsername)
+    // Atualizar senha se necessário
+    await prisma.admin.update({
+      where: { username: adminUsername },
+      data: {
+        password: hashedPassword,
+      },
+    })
+    console.log('ℹ️  Admin já existe, senha atualizada:', adminUsername)
   }
 
   // Criar categorias padrão
