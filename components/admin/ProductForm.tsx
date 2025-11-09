@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import { X, Upload } from 'lucide-react'
 
 interface ProductFormProps {
@@ -26,6 +27,7 @@ export default function ProductForm({
   const [categories, setCategories] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
   const [imageUrls, setImageUrls] = useState<string[]>([])
+  const [imageErrors, setImageErrors] = useState<Set<number>>(new Set())
 
   useEffect(() => {
     fetchCategories()
@@ -72,6 +74,15 @@ export default function ProductForm({
     const newUrls = imageUrls.filter((_, i) => i !== index)
     setImageUrls(newUrls)
     setFormData({ ...formData, images: newUrls })
+    setImageErrors((prev) => {
+      const newSet = new Set(prev)
+      newSet.delete(index)
+      return newSet
+    })
+  }
+
+  const handleImageError = (index: number) => {
+    setImageErrors((prev) => new Set(prev).add(index))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -231,26 +242,32 @@ export default function ProductForm({
             Adicionar URL de Imagem
           </button>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {imageUrls.map((url, index) => (
-              <div key={index} className="relative group">
-                <img
-                  src={url}
-                  alt={`Imagem ${index + 1}`}
-                  className="w-full aspect-square object-cover rounded-lg"
-                  onError={(e) => {
-                    ;(e.target as HTMLImageElement).src =
-                      'https://via.placeholder.com/300'
-                  }}
-                />
-                <button
-                  type="button"
-                  onClick={() => handleImageRemove(index)}
-                  className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-            ))}
+            {imageUrls.map((url, index) => {
+              // eslint-disable-next-line @next/next/no-img-element
+              return (
+                <div key={index} className="relative group aspect-square bg-gray-100 rounded-lg overflow-hidden">
+                  {imageErrors.has(index) ? (
+                    <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
+                      Erro ao carregar
+                    </div>
+                  ) : (
+                    <img
+                      src={url}
+                      alt={`Imagem ${index + 1}`}
+                      className="w-full h-full object-cover rounded-lg"
+                      onError={() => handleImageError(index)}
+                    />
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => handleImageRemove(index)}
+                    className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              )
+            })}
           </div>
         </div>
 
