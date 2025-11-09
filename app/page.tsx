@@ -33,7 +33,7 @@ export default async function Home() {
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <Link href="/" className="text-3xl font-bold text-primary-600">
+            <Link href="/" className="font-elegant text-3xl font-bold text-primary-600">
               Proenca&apos;s Moda
             </Link>
             <nav className="flex gap-6">
@@ -63,7 +63,7 @@ export default async function Home() {
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h1 className="font-elegant text-5xl md:text-6xl font-bold text-gray-900 mb-6">
             Bem-vinda à{' '}
             <span className="text-primary-600">Proenca&apos;s Moda</span>
           </h1>
@@ -77,7 +77,7 @@ export default async function Home() {
       {/* Novidades */}
       {newProducts.length > 0 && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">
+          <h2 className="font-elegant text-3xl font-bold text-gray-900 mb-8">
             🆕 Novidades
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -90,7 +90,7 @@ export default async function Home() {
 
       {/* Todos os Produtos */}
       <section id="produtos" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8">
+        <h2 className="font-elegant text-3xl font-bold text-gray-900 mb-8">
           Nossa Coleção
         </h2>
         {products.length === 0 ? (
@@ -112,7 +112,7 @@ export default async function Home() {
       <footer className="bg-gray-900 text-white mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4">Proenca&apos;s Moda</h3>
+            <h3 className="font-elegant text-2xl font-bold mb-4">Proenca&apos;s Moda</h3>
             <p className="text-gray-400">
               Moda feminina com estilo e elegância
             </p>
