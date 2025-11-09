@@ -243,7 +243,6 @@ export default function ProductForm({
           </button>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {imageUrls.map((url, index) => {
-              // eslint-disable-next-line @next/next/no-img-element
               return (
                 <div key={index} className="relative group aspect-square bg-gray-100 rounded-lg overflow-hidden">
                   {imageErrors.has(index) ? (
@@ -251,6 +250,7 @@ export default function ProductForm({
                       Erro ao carregar
                     </div>
                   ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={url}
                       alt={`Imagem ${index + 1}`}
